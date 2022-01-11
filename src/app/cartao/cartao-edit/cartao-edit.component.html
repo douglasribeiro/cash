@@ -1,0 +1,52 @@
+<div class="linha-botoes">
+  <mat-toolbar> Cartão </mat-toolbar>
+<mat-card id="card" style="text-align: center;"><br>
+
+	<mat-card-content>
+    <form [formGroup]="formulario">
+		<mat-form-field>
+      <mat-label>Numero</mat-label>
+			<input matInput type="text" id="numero" formControlName="numero" placeholder="parte do numero" autocomplete="off">
+      <mat-error *ngIf="formulario.controls['numero'].errors">Numero do cartao é obrigatório.</mat-error>
+		</mat-form-field><br/>
+
+		<mat-form-field>
+      <mat-label>Banco</mat-label>
+			<input matInput type="text" id="banco" formControlName="banco" placeholder="nome do banco" autocomplete="off">
+      <mat-error *ngIf="formulario.controls['banco'].errors">Nome do banco é obrigatório.</mat-error>
+		</mat-form-field><br/>
+
+    <mat-form-field>
+      <mat-label>Bandeira</mat-label>
+			<input matInput type="text" id="bandeira" formControlName="bandeira" placeholder="bandeira do cartão" autocomplete="off">
+      <mat-error *ngIf="formulario.controls['bandeira'].errors">informe a bandeira do cartão.</mat-error>
+		</mat-form-field><br/>
+
+    <mat-form-field>
+      <mat-label>Limite</mat-label>
+			<input matInput type="text" id="limite" formControlName="limite" placeholder="Limite de credito" autocomplete="off">
+      <mat-error *ngIf="formulario.controls['limite'].errors">Digite o limite para este cartão.</mat-error>
+		</mat-form-field><br/>
+
+    <mat-form-field>
+      <mat-label>Fechamento</mat-label>
+			<input matInput type="text" id="fechamento" formControlName="fechamento" placeholder="dia de fechamento da fatura" autocomplete="off">
+      <mat-error *ngIf="formulario.controls['fechamento'].errors">Qual o dia do mes que é feito o fechamento do cartão.</mat-error>
+		</mat-form-field><br/>
+
+    <mat-form-field>
+      <mat-label>Vencimento</mat-label>
+			<input matInput type="text" id="vencimento" formControlName="vencimento" placeholder="dia do vencimento da fatura">
+      <mat-error *ngIf="formulario.controls['vencimento'].errors">Qual dia vence a fatura do cartão.</mat-error>
+		</mat-form-field><br/>
+  </form>
+  </mat-card-content>
+  <mat-divider></mat-divider><br>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" style="margin-right:5px;" (click)="salvar()" [disabled]="!formulario.valid" >Salvar</button>
+    <button *ngIf="cartao && cartao.id" mat-raised-button color="warn" (click)="deletar()">Excluir</button>
+		<button mat-raised-button color="primary" style="margin-right:5px;" (click)="voltar()">Voltar</button>
+  </mat-card-actions>
+  <!-- //colunasTabela = ["id", "numero", "banco", "bandeira", "limite", "fechamento", "vencimento"]; -->
+</mat-card>
+</div>

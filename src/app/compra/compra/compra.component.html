@@ -1,0 +1,59 @@
+<div>
+  <div class="linha-botoes">
+    <mat-toolbar> Lista de Compras </mat-toolbar>
+
+    <ng-template #carregando>
+      <mat-spinner></mat-spinner>
+    </ng-template>
+  </div>
+
+  <div class="component-container">
+    <div *ngIf="compras$ | async as itens; else carregando">
+      <table mat-table [dataSource]="itens">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let compra"><a routerLink="edit/{{compra.id}}">{{ compra.id }}</a></td>
+        </ng-container>
+
+        <ng-container matColumnDef="data">
+          <th mat-header-cell *matHeaderCellDef>Data</th>
+          <td mat-cell *matCellDef="let compra"><a routerLink="edit/{{compra.id}}">{{ compra.data }}</a></td>
+        </ng-container>
+
+        <ng-container matColumnDef="valor">
+          <th mat-header-cell *matHeaderCellDef>Valor</th>
+          <td mat-cell *matCellDef="let compra">{{ compra.valor | currency:'BRL'}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="parcela">
+          <th mat-header-cell *matHeaderCellDef>Parcelas</th>
+          <td mat-cell *matCellDef="let compra">{{ compra.parcela }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="fornecedor">
+          <th mat-header-cell *matHeaderCellDef>Fornecedor</th>
+          <td mat-cell *matCellDef="let compra">{{ compra.fornecedor }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="produto">
+          <th mat-header-cell *matHeaderCellDef>Produto</th>
+          <td mat-cell *matCellDef="let compra">{{ compra.produto }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cartao">
+          <th mat-header-cell *matHeaderCellDef>Cartão</th>
+          <td mat-cell *matCellDef="let compra">{{ compra.cartao.numero }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="colunasTabela"></tr>
+        <tr mat-row *matRowDef="let row; columns: colunasTabela"></tr>
+      </table>
+    </div>
+    <div class="linha-botoes">
+      <br>
+      <button mat-raised-button color="primary" routerLink="/compra/novo">Novo</button>
+    </div>
+  </div>
+</div>
+
+<!-- colunasTabela = ["id", "numero", "banco", "bandeira", "limite", "fechamento", "vencimento"]; -->
